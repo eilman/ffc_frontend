@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## To create the node-modules
+
+### `npm install`
+
+Then start
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -13,6 +19,32 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+
+### Development Instructions
+
+Use of visual studio is encouraged.
+The ESLint extension should be installed for proper linting.
+
+## Dependencies
+
+The project runs together with some external dependencies for ease of use
+
+- React
+- Redux + React Redux for managing the global state
+- React Router + React Router Dom for managing the routing
+- Axios for sending and receiving promise based
+- Redux Thunk for handling the middleware
+- Redux Logger for logging the actions and changes in state in Redux
+- Material-UI for stylish, user-friendly components
+- Material Table is a table component equipped with features such as inline editing, adding, and deleting, which streamline usability and reduce code clutter, providing developers with a practical table structure.
+
+## Development Dependencies
+
+We also use a set of dependencies for development build only
+
+- Eslint
+- Prettier
 
 ### `npm test`
 

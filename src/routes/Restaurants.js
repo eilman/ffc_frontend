@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 import { createRestaurant, updateRestaurant, deleteRestaurant } from '../store/actions/restaurantActions';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -57,6 +56,7 @@ function Restaurants() {
   useSelector(state => console.log(state));
 
   useEffect(() => {
+    //If the user is a restaurant manager, only that user's restaurants will be displayed.
     if(userRole === 'restmudur'){
       const userRestaurants = restaurants.filter(rest => rest.user.userId === userId);
       setRestaurantList(userRestaurants);
@@ -96,8 +96,6 @@ function Restaurants() {
             onRowAdd: newData =>
               new Promise((resolve, reject) => {
                 setTimeout(() => {
-                  console.log(newData);
-                  //setData([...data, newData]);
                   dispatch(createRestaurant(newData));
                   resolve();
                 }, 1000)
@@ -109,7 +107,6 @@ function Restaurants() {
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
                   dispatch(updateRestaurant(dataUpdate[index].restaurantId, dataUpdate[index]));
-                  //setData([...dataUpdate]);
                   resolve();
                 }, 1000)
               }),
@@ -119,8 +116,6 @@ function Restaurants() {
                   const dataDelete = [...data];
                   const index = oldData.tableData.id;
                   dispatch(deleteRestaurant(dataDelete[index].restaurantId));
-                  //dataDelete.splice(index, 1);
-                  //setData([...dataDelete]);
                   resolve()
                 }, 1000)
               }),
@@ -130,11 +125,9 @@ function Restaurants() {
               icon: VisibilityIcon,
               tooltip: 'View',
               onClick: (event, rowData) => {
-                // rowData'dan restaurantId'yi al
                 const restaurantId = rowData.restaurantId;
                 console.log(restaurantId);
-                //return <Link to={`/orders/${restaurantId}`}>Restaurant Orders</Link>;
-                // restaurantId ile Orders sayfasına yönlendir
+                //Navigate to the orders page to see specific orders with selected restaurant id.
                 navigate(`/orders/${restaurantId}`, { state: { restaurantId: restaurantId } });
               }
             }

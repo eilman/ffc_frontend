@@ -9,7 +9,7 @@ export const setOrders = orderData => ({
 export const getOrders = () => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -29,7 +29,7 @@ export const getOrders = () => {
 export const createOrder = (userId, newData) => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -49,7 +49,7 @@ export const createOrder = (userId, newData) => {
 export const updateOrder = (orderId, updatedData) => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -69,7 +69,7 @@ export const updateOrder = (orderId, updatedData) => {
 export const deleteOrder = (orderId) => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);

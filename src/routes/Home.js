@@ -10,12 +10,15 @@ function Home() {
 
   const dispatch = useDispatch();
 
+  //After login, users, orders and restaurants will be requested from backend.
+  //Their states will be updated.
   useEffect(() => {
     dispatch(getUserList());
     dispatch(getRestaurants());
     dispatch(getOrders());
   }, [dispatch]);
 
+  //To make visible the navbar
   useEffect(() => {
     localStorage.setItem("isLoggedIn", true);
     if(localStorage.getItem("isLoggedIn")){
@@ -27,7 +30,7 @@ function Home() {
     <div>
       <Navbar open={openNavbar} />
       <div className="home">
-        <p>Welcome to the Fast Food Chain Application</p>
+        <p>Welcome to the HaveKitchen Application</p>
       </div>
     </div>
   )

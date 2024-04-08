@@ -9,7 +9,7 @@ export const setRestaurants = restData => ({
 export const getRestaurants = () => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -29,7 +29,7 @@ export const getRestaurants = () => {
 export const createRestaurant = (newData) => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -49,7 +49,7 @@ export const createRestaurant = (newData) => {
 export const updateRestaurant = (restaurantId, updatedData) => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -69,7 +69,7 @@ export const updateRestaurant = (restaurantId, updatedData) => {
 export const deleteRestaurant = (restaurantId) => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);

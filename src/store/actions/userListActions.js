@@ -9,7 +9,7 @@ export const setUserList = userListData => ({
 export const getUserList = () => {
     return dispatch => {
         axios.interceptors.request.use(function (config) {
-            console.log("Request URL:", config.url); // URL'yi konsola yazdırıyoruz
+            console.log("Request URL:", config.url); 
             return config;
         }, function (error) {
             return Promise.reject(error);

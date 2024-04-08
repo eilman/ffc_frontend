@@ -3,16 +3,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import {Provider} from 'react-redux'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-//import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import {logger} from 'redux-logger';
 import orderReducer from './store/reducers/orderReducer';
 import restaurantReducer from './store/reducers/restaurantReducer';
 import userReducer from './store/reducers/userReducer';
 import userListReducer from './store/reducers/userListReducer';
-import Navbar from "./components/Navbar";
 import "./App.css";
-import Login from "./Auth/Login";
 import App from "./App";
 
 const middlewares = [];

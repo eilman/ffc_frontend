@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, TextField, Button, Typography, Grid } from "@material-ui/core"
+import { Container, TextField, Button, Grid } from "@material-ui/core"
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import HaveKitchen from '../assets/HaveKitchen.png';
 import { useDispatch } from 'react-redux';
-import { setUserDetails } from '../store/reducers/userReducer';
 import { getUserDetails } from "../store/actions";
 
 function Login() {
@@ -12,7 +10,6 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
-  //const [userDetails, setUserDetails] = useState(null);
 
   const navigate = useNavigate();
 
@@ -29,7 +26,6 @@ function Login() {
   };
 
   function sendLoginRequest() {
-    setErrorMsg("");
     const reqBody = {
       username: username,
       password: password,
@@ -43,7 +39,6 @@ function Login() {
       body: JSON.stringify(reqBody),
     })
       .then((response) => {
-        console.log(response)
         if (response.status === 200) return response.text();
         else if (response.status === 401 || response.status === 403) {
           setErrorMsg("Invalid username or password");
@@ -53,11 +48,10 @@ function Login() {
       })
       .then((data) => {
         if (data && data.userId !== null) {
-          //setUserDetails(data);
           const currentUserId = data; 
-          console.log(currentUserId);
           localStorage.setItem("isLoggedIn", true);
           dispatch(getUserDetails(currentUserId));
+          // Navigation to the Home page after login.
           navigate("/home", { state: { userId: currentUserId } });
         }
       });

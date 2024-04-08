@@ -54,12 +54,10 @@ function Orders() {
   const restaurants = useSelector(state => state.restaurants);
   const location = useLocation();
   const { restaurantId } = location.state || {};
-  console.log(restaurantId);
 
   useSelector(state => console.log(state));
 
-  console.log(userRole);
-  console.log(userId);
+  //Customers can only see their orders
   useEffect(() => {
     if (userRole === "customer") {
       const currentUserOrders = orders.filter(order => order.user.userId === userId);
@@ -67,6 +65,7 @@ function Orders() {
     }
   }, [orders, userId, userRole]);
   
+  //If this component was called by the display button of a restaurant record, only that restaurant's orders will be displayed.
   useEffect(() => {
     if (userRole !== "customer") {
       if (restaurantId !== undefined && restaurantId !== null) {
@@ -82,7 +81,6 @@ function Orders() {
   restaurants.forEach(restaurant => {
     lookupOptionsForRestName[restaurant.restaurantName] = restaurant.restaurantName;
   });
-  console.log(lookupOptionsForRestName)
 
 
   const [columns, setColumns] = useState([
@@ -103,14 +101,13 @@ function Orders() {
   ]);
 
   const [data, setData] = useState(orders);
-  const isAdmin = userRole === 'genelmudur' || userRole === 'restmudur';
+  //const isAdmin = userRole === 'genelmudur' || userRole === 'restmudur';
 
   return (
     <div>
       <Navbar open={true} />
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <div style={{ maxWidth: '90%'}}>
-        
           <MaterialTable
             title="Orders"
             columns={columns}
@@ -165,6 +162,4 @@ function Orders() {
 
 export default Orders;
 
-/*  
-{isAdmin ?  ) : (  <div>Current user does not have permission to view orders.</div> )  }
-*/
+

@@ -4,6 +4,9 @@ export const SET_USERS = 'SET_USERS';
 export const GET_USER_DETAILS = 'GET_USER_DETAILS';
 export const SET_USER_DETAILS = 'SET_USER_DETAILS';
 
+export const GET_USER_ID = 'GET_USER_ID';
+export const SET_USER_ID = 'SET_USER_ID';
+
 export const GET_ORDERS = 'GET_ORDERS';
 export const SET_ORDERS = 'SET_ORDERS';
 
