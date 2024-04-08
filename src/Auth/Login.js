@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, TextField, Button, Typography, Grid } from "@material-ui/core"
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import logo from '../assets/logo.jpg';
+import HaveKitchen from '../assets/HaveKitchen.png';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from '../store/reducers/userReducer';
 import { getUserDetails } from "../store/actions";
@@ -71,11 +71,8 @@ function Login() {
   return (
   <div className="login-container">
     <Container maxWidth="xs">
-      <Typography variant="h4" align="center" style={{ margin: '20px auto', fontFamily: 'Arial', fontWeight: 'bold', color: '#333' }}>
-        FastFood Chain
-      </Typography>
       <div>
-        <img src={logo} alt="logo" className="logo"/>
+        <img src={HaveKitchen} alt="logo" className="logo"/>
       </div>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
