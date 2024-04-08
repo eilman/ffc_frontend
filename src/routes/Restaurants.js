@@ -69,7 +69,6 @@ function Restaurants() {
   restaurantList.forEach(restaurant => {
     lookupOptionsForRestManagerName[restaurant.user.username] = restaurant.user.username;
   });
-  console.log(lookupOptionsForRestManagerName);
   //, lookup: lookupOptionsForRestManagerName
 
   const [columns, setColumns] = useState([
@@ -126,7 +125,6 @@ function Restaurants() {
               tooltip: 'View',
               onClick: (event, rowData) => {
                 const restaurantId = rowData.restaurantId;
-                console.log(restaurantId);
                 //Navigate to the orders page to see specific orders with selected restaurant id.
                 navigate(`/orders/${restaurantId}`, { state: { restaurantId: restaurantId } });
               }

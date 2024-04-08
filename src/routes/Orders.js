@@ -146,7 +146,6 @@ function Orders() {
                   setTimeout(() => {
                     const dataDelete = [...data];
                     const index = oldData.tableData.id;
-                    console.log(dataDelete[index].orderId);
                     dispatch(deleteOrder(dataDelete[index].orderId));
 
                     resolve()
