@@ -8,6 +8,8 @@ const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.SET_USERS:
             return setUserList(action);
+        case 'RESET_STATE':
+            return initialState;
         default:
             return state;
         }

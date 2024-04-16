@@ -6,8 +6,11 @@ import { SidebarData } from "./SidebarData";
 import "../App.css";
 import { IconContext } from "react-icons";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { resetState } from "../store/actions";
 
 function Navbar({ open }) {
+  const dispatch = useDispatch();
   const [sidebar, setSidebar] = useState(false);
   const navigate = useNavigate();
   const showSidebar = () => setSidebar(!sidebar);
@@ -15,6 +18,7 @@ function Navbar({ open }) {
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
+    dispatch(resetState());
     navigate("/");
   };
 

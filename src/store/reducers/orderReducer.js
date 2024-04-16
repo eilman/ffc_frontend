@@ -8,6 +8,8 @@ const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.SET_ORDERS:
             return setOrders(action);
+        case 'RESET_STATE':
+            return initialState;
         default:
             return state;
         }

@@ -74,7 +74,7 @@ function Restaurants() {
   const [columns, setColumns] = useState([
     { title: 'Restaurant Name', field: 'restaurantName' },
     { title: 'Restaurant Address', field: 'restaurantAddress'},
-    { title: 'Restaurant Manager Name', field: 'user.username'},
+    { title: 'Restaurant Manager User Name', field: 'user.username', lookup: { 'restmudur': 'restmudur', 'restmudur2': 'restmudur2'}},
   ]);
 
   const [data, setData] = useState(restaurants);

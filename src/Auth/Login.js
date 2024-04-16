@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { auth, resetState } from '../store/actions/auth';
 import { Container, TextField, Button, Grid } from "@material-ui/core"
 import { useNavigate } from 'react-router-dom';
 import HaveKitchen from '../assets/HaveKitchen.png';
-import { useDispatch } from 'react-redux';
 import { getUserDetails } from "../store/actions";
 
 function Login() {
@@ -10,12 +12,22 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
+  const userDetails = useSelector(state => state.user);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("isLoggedIn", false);
+    dispatch(resetState());
   }, []);
+
+  useEffect(() => {
+    if(userDetails.userId !== null && userDetails.userId !== undefined){
+      localStorage.setItem("isLoggedIn", true);
+      // Navigation to the Home page after login.
+      navigate("/home");
+    }
+  }, [userDetails]);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -31,6 +43,8 @@ function Login() {
       password: password,
     };
 
+    dispatch(auth(reqBody));
+    /*
     fetch("http://localhost:8081/ffc/login", {
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +68,7 @@ function Login() {
           // Navigation to the Home page after login.
           navigate("/home", { state: { userId: currentUserId } });
         }
-      });
+      });*/
   }
 
   const handleSubmit = (event) => {

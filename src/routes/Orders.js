@@ -48,6 +48,8 @@ function Orders() {
 
   const dispatch = useDispatch();
   const [orderList, setOrderList] = useState([]);
+  const [isUserCustomer, setIsUserCustomer] = useState(false);
+  const [isUserRestManager, setIsUserRestManager] = useState(false);
   const orders = useSelector(state => state.orders);
   const userRole = useSelector(state => state.user.userRole);
   const userId = useSelector(state => state.user.userId);
@@ -57,25 +59,33 @@ function Orders() {
 
   useSelector(state => console.log(state));
 
-  //Customers can only see their orders
   useEffect(() => {
+      //Customers can only see their orders
     if (userRole === "customer") {
+      setIsUserCustomer(true);
       const currentUserOrders = orders.filter(order => order.user.userId === userId);
       setOrderList(currentUserOrders);
     }
   }, [orders, userId, userRole]);
   
-  //If this component was called by the display button of a restaurant record, only that restaurant's orders will be displayed.
+  
   useEffect(() => {
     if (userRole !== "customer") {
+      //If this component is called by the display button of a restaurant record, only that restaurant's orders will be displayed.
       if (restaurantId !== undefined && restaurantId !== null) {
         const currentRestOrders = orders.filter(order => order.restaurant.restaurantId === restaurantId);
         setOrderList(currentRestOrders);
-      }else{
+      }else if(userRole === 'restmudur'){
+        //Restaurant managers can only see their restaurants' orders
+        setIsUserRestManager(true);
+        const currentUsersRestOrders = orders.filter(order => order.restaurant.user.userId === userId);
+        setOrderList(currentUsersRestOrders);
+      }
+      else{
         setOrderList(orders);
       }
     }
-  }, [orders, restaurantId]);
+  }, [orders, restaurantId, userId, userRole]);
 
   const lookupOptionsForRestName = {};
   restaurants.forEach(restaurant => {
@@ -84,12 +94,12 @@ function Orders() {
 
 
   const [columns, setColumns] = useState([
-    { title: 'Product Name', field: 'productName', lookup: { 'Hamburger Menu': 'Hamburger Menu', 'Doner Menu': 'Doner Menu', 'Pizza Menu': 'Pizza Menu' },},
-    { title: 'Restaurant Name', field: 'restaurant.restaurantName', lookup: lookupOptionsForRestName},
+    { title: 'Product Name', field: 'productName', lookup: { 'Hamburger Menu': 'Hamburger Menu', 'Doner Menu': 'Doner Menu', 'Pizza Menu': 'Pizza Menu' } },
+    { title: 'Restaurant Name', field: 'restaurant.restaurantName', lookup: lookupOptionsForRestName },
     { title: 'Delivery Address', field: 'deliveryAddress'},
     { title: 'Customer Name', field: 'user.firstName'},
     { title: 'Customer Surname', field: 'user.lastName'},
-    { title: 'Status', field: 'status', lookup: { 'Sipariş alındı': 'Sipariş alındı', 'Hazırlandı': 'Hazırlandı', 'Yolda': 'Yolda' }, initialEditValue: 'Sipariş Alındı'},
+    { title: 'Status', field: 'status', lookup: { 'Sipariş alındı': 'Sipariş alındı', 'Hazırlandı': 'Hazırlandı', 'Yolda': 'Yolda', 'Teslim edildi': 'Teslim edildi' }, initialEditValue: 'Sipariş alındı'  },
     { 
       title: 'Phone', 
       field: 'phone',
@@ -99,6 +109,7 @@ function Orders() {
       })
     }
   ]);
+
 
   const [data, setData] = useState(orders);
   //const isAdmin = userRole === 'genelmudur' || userRole === 'restmudur';
