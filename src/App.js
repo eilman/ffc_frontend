@@ -14,9 +14,6 @@ function App() {
 
 
   const handleLogin = () => {
-    // Burada gerçekleşen bir oturum açma işlemi varsayıyoruz
-    // Örneğin, bir API'ye istek yaparak oturum açabilirsiniz
-    // Basit bir örnek olarak, sadece state'i güncelleyeceğiz
     setIsLoggedIn(true);
   };
 
