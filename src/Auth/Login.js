@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { auth, resetState } from '../store/actions/auth';
 import { Container, TextField, Button, Grid } from "@material-ui/core"
 import { useNavigate } from 'react-router-dom';
-import HaveKitchen from '../assets/HaveKitchen.png';
+import Logo_HaveKitchen from '../assets/havekitchen_logo.png';
 import { getUserDetails } from "../store/actions";
 
 function Login() {
@@ -80,7 +80,7 @@ function Login() {
   <div className="login-container">
     <Container maxWidth="xs">
       <div>
-        <img src={HaveKitchen} alt="logo" className="logo"/>
+        <img src={Logo_HaveKitchen} alt="logo" className="logo"/>
       </div>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
